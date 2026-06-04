@@ -1,0 +1,202 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Una Sorpresa Para Ti ✨</title>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            background-color: #fce4ec;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            overflow-x: hidden;
+        }
+
+        .contenedor {
+            text-align: center;
+            width: 90%;
+            max-width: 400px;
+            perspective: 1000px;
+        }
+
+        /* --- ESTILO DEL SOBRE --- */
+        .sobre {
+            width: 100%;
+            height: 250px;
+            background-color: #fff9c4;
+            border: 3px solid #fbc02d;
+            border-radius: 8px;
+            position: relative;
+            cursor: pointer;
+            box-shadow: 0 10px 20px rgba(0,0,0,0.15);
+            transition: transform 0.5s, opacity 0.5s;
+        }
+
+        /* Solapa del sobre */
+        .sobre::before {
+            content: "";
+            position: absolute;
+            top: 0; left: 0;
+            width: 0; height: 0;
+            border-left: 197px solid transparent;
+            border-right: 197px solid transparent;
+            border-top: 130px solid #fff59d;
+            border-bottom: 120px solid transparent;
+            transform-origin: top;
+            transition: transform 0.4s ease;
+            z-index: 2;
+        }
+
+        .sobre.abierto::before {
+            transform: rotateX(180deg) translateY(10px);
+            z-index: 1;
+        }
+
+        .corazon {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            font-size: 55px;
+            z-index: 3;
+            transition: transform 0.3s;
+        }
+
+        .sobre:hover .corazon {
+            transform: translate(-50%, -50%) scale(1.2);
+        }
+
+        .indicador {
+            margin-top: 25px;
+            color: #880e4f;
+            font-weight: bold;
+            font-size: 1.1rem;
+            animation: flotar 2s infinite ease-in-out;
+        }
+
+        @keyframes flotar {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-5px); }
+        }
+
+        /* --- ESTILO DE LA CARTA --- */
+        .carta {
+            background-color: white;
+            padding: 25px;
+            border-radius: 12px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.15);
+            border: 1px solid #e0e0e0;
+            display: none;
+            opacity: 0;
+            transform: translateY(30px);
+            transition: opacity 0.8s ease, transform 0.8s ease;
+            text-align: left;
+            box-sizing: border-box;
+            position: relative;
+        }
+
+        .carta.mostrar {
+            display: block;
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .carta h1 {
+            color: #c2185b;
+            font-size: 1.5rem;
+            margin-top: 0;
+            text-align: center;
+        }
+
+        /* Contenedor de la foto de Spiderman */
+        .spiderman-img-container {
+            text-align: center;
+            margin: 15px 0;
+        }
+
+        .spiderman-img {
+            max-width: 140px;
+            height: auto;
+            border-radius: 8px;
+        }
+
+        .carta p {
+            color: #37474f;
+            line-height: 1.6;
+            font-size: 1.05rem;
+            white-space: pre-line;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="contenedor">
+        <!-- Pantalla 1: El Sobre Cerrado -->
+        <div id="sobreContainer">
+            <div class="sobre" id="miSobre" onclick="abrirSobre()">
+                <div class="corazon">❤️</div>
+            </div>
+            <p class="indicador">¡Toca el corazón para abrir tu carta! ✨</p>
+        </div>
+
+        <!-- Pantalla 2: La Carta Abierta -->
+        <div class="carta" id="miCarta">
+            <h1>¡Hola! Tengo algo para ti...</h1>
+            
+            <!-- SECCIÓN CON TU IMAGEN DE SPIDERMAN LOCAL -->
+            <div class="spiderman-img-container">
+                <img class="spiderman-img" src="spiderman.jpg" alt="Spiderman Chibi">
+            </div>
+
+            <p id="mensajeTexto">
+                Cami, hoy solo quería decirte que estoy muy orgullosa de ti. A veces me pongo a pensar en todo lo que ha pasado, en todo lo que has hecho para llegar donde estás, y no puedo evitar sentirme orgullosa de ti.
+
+                Quiero que sepas que te tengo un cariño enorme y que aunque siempre lo diga, sigues siendo una persona muy importante para mí. Me encanta verte cumplir metas y convertirte poco a poco en la persona que quieres ser.
+
+                También quiero que sepas que te amo, aunque eso lo digo siempre jaja pero pues No de una forma complicada ni esperando nada, simplemente te amo porque eres tú. Porque conocí tu corazón, tus sueños, tus miedos y las cosas bonitas que te hacen ser quien eres. Y hay personas que uno lleva siempre con mucho amor en el alma, y para mí tú eres una de ellas.
+
+                Deseo de todo corazón que la vida te siga regalando cosas bonitas, que nunca pierdas esa esencia tan tuya y que siempre recuerdes lo valioso que eres. Yo siempre voy a sentir mucha alegría por cada logro tuyo y un orgullo inmenso de verte avanzar asi estemos o no distanciados, en algun momento juro te dejare en paz para que tengas una linda vida sin problemas por ahora tendras que aguantarme un ratito mas jakja.
+
+                Te amo muchísimo y espero que nunca olvides lo especial que eres para mí. ❤️
+ 
+                Con mucho cariño,
+                Tu futura ingeniera 💻✨
+            </p>
+        </div>
+    </div>
+
+    <!-- REPRODUCTOR DE AUDIO LOCAL INTEGRADO -->
+    <audio id="musicaFondo" loop>
+        <source src="musica.mp3" type="audio/mp3">
+    </audio>
+
+    <script>
+        function abrirSobre() {
+            const sobre = document.getElementById('miSobre');
+            const musica = document.getElementById('musicaFondo');
+            
+            // 1. Forzar la reproducción inmediata usando la interacción del clic del sobre
+            musica.play().catch(err => {
+                console.log("El navegador requiere permisos interactivos forzados: ", err);
+            });
+            
+            // 2. Inicia animación visual de la solapa
+            sobre.classList.add('abierto');
+            
+            // 3. Oculta sobre y despliega la carta de forma fluida
+            setTimeout(() => {
+                document.getElementById('sobreContainer').style.display = 'none';
+                const carta = document.getElementById('miCarta');
+                carta.classList.add('mostrar');
+            }, 800);
+        }
+    </script>
+</body>
+</html>
+
+
